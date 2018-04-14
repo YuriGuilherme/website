@@ -67,8 +67,12 @@
   }
   function gtag() {dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('set', 'userId', userId); // Set the user ID using signed-in user_id.
-  gtag('config', 'UA-117524279-1');
+  gtag('config', 'UA-117524279-1', {
+    'cookie_name': 'gaCookie',
+    'cookie_domain': 'yuriguilherme.com',
+    'cookie_expires': 2419200,  // 28 days, in seconds
+    'user_id': userId // Set the user ID using signed-in user_id.
+  });
 </script>
 
 <script>

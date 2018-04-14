@@ -42,9 +42,32 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-117524279-1"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  function hashCode(s) {
+    let hash = 0
+    let chr;
+    if (s.length === 0) {
+      return hash.toString(36);
+    };
+    for (let i = 0; i < s.length; i++) {
+      chr = s.charCodeAt(i);
+      hash = ((hash << 5) - hash) + chr;
+      hash |= 0;
+    }
+    return hash.toString(36);
+  };
 
+  try {
+    const userId = window.localStorage.getItem('userId');
+    if (!!!userId) {
+      throw 'Not found user ID';
+    }
+  } catch(e) {
+    const userId = hashCode(`${Math.random()}${new Date().getTime()}`);
+    window.localStorage.setItem('userId', userId);
+  }
+  function gtag() {dataLayer.push(arguments);}
+  gtag('js', new Date());
+  ga('set', 'userId', userId); // Set the user ID using signed-in user_id.
   gtag('config', 'UA-117524279-1');
 </script>
 

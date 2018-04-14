@@ -41,6 +41,7 @@
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-117524279-1"></script>
 <script>
+  const userId;
   window.dataLayer = window.dataLayer || [];
   function hashCode(s) {
     let hash = 0
@@ -55,14 +56,13 @@
     }
     return hash.toString(36);
   };
-
   try {
-    const userId = window.localStorage.getItem('userId');
+    userId = window.localStorage.getItem('userId');
     if (!!!userId) {
       throw 'Not found user ID';
     }
   } catch(e) {
-    const userId = hashCode(`${Math.random()}${new Date().getTime()}`);
+    userId = hashCode(`${Math.random()}${new Date().getTime()}`);
     window.localStorage.setItem('userId', userId);
   }
   function gtag() {dataLayer.push(arguments);}

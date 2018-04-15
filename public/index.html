@@ -21,16 +21,16 @@
         <span>uri Guilherme</span>
       </div>
       <div class="links">
-        <a class="link" href="https://github.com/YuriGuilherme" title="Github" target="_blank">
+        <a class="link" onclick="app.click_event('github_link')" href="https://github.com/YuriGuilherme" title="Github" target="_blank">
           <i class="fa fa-github" aria-hidden="true"></i>
         </a>
-        <a class="link" href="https://medium.com/@yuriguilhermemoura" title="medium" target="_blank">
+        <a class="link" onclick="app.click_event('medium_link')" href="https://medium.com/@yuriguilhermemoura" title="medium" target="_blank">
           <i class="fa fa-medium" aria-hidden="true"></i>
         </a>
-        <a class="link" href="https://linkedin.com/in/YuriGuilherme" title="linkedin" target="_blank">
+        <a class="link" onclick="app.click_event('linkedin_button')" href="https://linkedin.com/in/YuriGuilherme" title="linkedin" target="_blank">
           <i class="fa fa-linkedin" aria-hidden="true"></i>
         </a>
-        <a class="link" href="mailto:yurigm97@gmail.com?subject=Quero%20te%20contratar" title="E-mail" target="_blank">
+        <a class="link" onclick="app.click_event('email_button')" href="mailto:yurigm97@gmail.com?subject=Quero%20te%20contratar" title="E-mail" target="_blank">
           <i class="fa fa-envelope-o" aria-hidden="true"></i>
         </a>
       </div>
@@ -73,6 +73,18 @@
     'cookie_expires': 2419200,  // 28 days, in seconds
     'user_id': userId // Set the user ID using signed-in user_id.
   });
+</script>
+
+<script>
+  const app = function() {
+    const click_event = (event) => {
+      gtag('event', `${event}_clicked`);
+    };
+
+    return {
+      click_event: click_event,
+    }
+  }();
 </script>
 
 <script>
